@@ -33,6 +33,7 @@
         <druid.version>1.2.18</druid.version>
         <hutool.version>5.8.2</hutool.version>
         <springfox.version>3.0.0</springfox.version>
+        <common-base.version>1.0-SNAPSHOT</common-base.version>
     </properties>
     <!--    父工程需要遵循两点要求：-->
     <!--    1.packaging标签文本内容必须是pom-->
@@ -99,6 +100,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${springfox.version}</version>
+            </dependency>
+            <!--        公共基础模块依赖-->
+            <dependency>
+                <groupId>com.powernode</groupId>
+                <artifactId>common-base</artifactId>
+                <version>${common-base.version}</version>
             </dependency>
         </dependencies>
 

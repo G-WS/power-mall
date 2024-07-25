@@ -6,7 +6,7 @@ spring:
       server-addr: 192.168.187.142:8848
       username: nacos
       password: nacos
-      discovery:  #nacos注册中心配置
+      discovery: #nacos注册中心配置
         namespace: 0416e0bb-f340-496d-a891-8ad681902d66
         group: A_GROUP
         service: ${spring.application.name}
@@ -17,6 +17,9 @@ spring:
         file-extension: yml
   profiles:
     active: dev #多环境配置
+
+
+
 
 
 
@@ -34,3 +37,8 @@ spring:
 #    host: 192.168.187.142
 #    port: 6380
 #    password: 123456
+#gateway:
+#  white:
+#    allow-urls:
+#      - /doLogin #该路径为项目的登录路径
+#      - /free #样例路径
