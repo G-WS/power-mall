@@ -6,7 +6,7 @@
     <!--@Table prod_tag-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="status" jdbcType="Integer" property="status" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
     <result column="style" jdbcType="INTEGER" property="style" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />

@@ -8,7 +8,7 @@
     <result column="shop_id" jdbcType="BIGINT" property="shopId" />
     <result column="tag_id" jdbcType="BIGINT" property="tagId" />
     <result column="prod_id" jdbcType="BIGINT" property="prodId" />
-    <result column="status" jdbcType="Integer" property="status" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">

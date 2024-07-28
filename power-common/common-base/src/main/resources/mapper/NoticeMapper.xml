@@ -8,7 +8,7 @@
     <result column="shop_id" jdbcType="BIGINT" property="shopId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <result column="status" jdbcType="Integer" property="status" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
     <result column="is_top" jdbcType="TINYINT" property="isTop" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />

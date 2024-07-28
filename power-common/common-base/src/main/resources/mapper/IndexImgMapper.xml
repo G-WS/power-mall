@@ -10,11 +10,11 @@
     <result column="des" jdbcType="VARCHAR" property="des" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="link" jdbcType="VARCHAR" property="link" />
-    <result column="status" jdbcType="Integer" property="status" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="prod_id" jdbcType="BIGINT" property="prodId" />
-    <result column="type" jdbcType="Integer" property="type" />
+    <result column="type" jdbcType="BOOLEAN" property="type" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
