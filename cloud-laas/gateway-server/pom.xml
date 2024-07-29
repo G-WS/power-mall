@@ -57,6 +57,13 @@
         <dependency>
             <groupId>com.powernode</groupId>
             <artifactId>common-base</artifactId>
+            <!--            排除当前依赖中的指定的依赖-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
     <build>

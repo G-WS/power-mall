@@ -1,6 +1,5 @@
 package com.powernode.filter;
 
-import com.alibaba.nacos.api.naming.pojo.healthcheck.impl.Http;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.powernode.config.WhiteUrlsConfig;
