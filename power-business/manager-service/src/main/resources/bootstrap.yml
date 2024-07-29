@@ -7,7 +7,7 @@ spring:
       username: nacos
       password: nacos
       discovery:
-        namespace: xxxx
+        namespace: 0416e0bb-f340-496d-a891-8ad681902d66
         group: A_GROUP
         service: ${spring.application.name}
       config:
