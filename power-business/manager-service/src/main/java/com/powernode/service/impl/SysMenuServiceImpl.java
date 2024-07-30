@@ -1,8 +1,9 @@
 package com.powernode.service.impl;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,14 @@ import com.powernode.domain.SysMenu;
 import com.powernode.mapper.SysMenuMapper;
 import com.powernode.service.SysMenuService;
 @Service
+@CacheConfig(cacheNames = "com.powernode.service.impl.SysMenuServiceImpl")
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService{
 
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
+    @Override
+    @Cacheable(key = "#loginUserId")
     public Set<SysMenu> queryUserMenuListByUserId(Long loginUserId) {
         // 根据用户标识查询菜单权限集合
         Set<SysMenu> menus = sysMenuMapper.selectUserMenuListByUserId(loginUserId);
