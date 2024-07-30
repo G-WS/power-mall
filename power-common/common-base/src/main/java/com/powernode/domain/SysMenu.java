@@ -6,23 +6,25 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.Set;
+
 /**
  * 菜单管理
  */
-@ApiModel(description="菜单管理")
+@ApiModel(value="com-powernode-domain-SysMenu")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "sys_menu")
 public class SysMenu implements Serializable {
-    @TableId(value = "menu_id", type = IdType.INPUT)
+    @TableId(value = "menu_id", type = IdType.AUTO)
     @ApiModelProperty(value="")
     private Long menuId;
 
@@ -36,7 +38,7 @@ public class SysMenu implements Serializable {
     /**
      * 菜单名称
      */
-    @TableField(value = "`name`")
+    @TableField(value = "name")
     @ApiModelProperty(value="菜单名称")
     private String name;
 
@@ -57,7 +59,7 @@ public class SysMenu implements Serializable {
     /**
      * 类型   0：目录   1：菜单   2：按钮
      */
-    @TableField(value = "`type`")
+    @TableField(value = "type")
     @ApiModelProperty(value="类型   0：目录   1：菜单   2：按钮")
     private Integer type;
 
@@ -74,6 +76,12 @@ public class SysMenu implements Serializable {
     @TableField(value = "order_num")
     @ApiModelProperty(value="排序")
     private Integer orderNum;
+
+
+    // 子节点集合
+    @TableField(exist = false)
+    @ApiModelProperty("子节点集合")
+    private Set<SysMenu> list;
 
     private static final long serialVersionUID = 1L;
 }

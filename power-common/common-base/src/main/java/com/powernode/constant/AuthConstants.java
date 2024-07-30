@@ -12,7 +12,7 @@ public interface AuthConstants {
     /**
      * 存放token值的前缀
      */
-    String BERAER = "bearer";
+    String BERAER = "bearer ";
 
     /**
      * token值存放再redis中的前缀
