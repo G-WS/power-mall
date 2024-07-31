@@ -13,8 +13,8 @@ import java.io.Serializable;
  * 项目统一响应结果对象
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ApiModel("项目统一响应结果对象")
 public class Result<T> implements Serializable {
 
@@ -33,10 +33,10 @@ public class Result<T> implements Serializable {
      * @return
      * @param <T>
      */
-    public static <T> Result<T> success(T data){
+    public static <T> Result<T> success(T data) {
         Result result = new Result<>();
         result.setData(data);
-        return  result;
+        return result;
     }
 
     /**
@@ -46,18 +46,37 @@ public class Result<T> implements Serializable {
      * @return
      * @param <T>
      */
-    public static <T> Result<T> fail(Integer code,String msg){
+    public static <T> Result<T> fail(Integer code,String msg) {
         Result result = new Result<>();
-        result.setMsg(msg);
         result.setCode(code);
+        result.setMsg(msg);
         result.setData(null);
         return result;
     }
-    public static<T> Result<T> fail(BusinessEnum businessEnum){
+
+    /**
+     * 操作失败
+     * @param businessEnum
+     * @return
+     * @param <T>
+     */
+    public static <T> Result<T> fail(BusinessEnum businessEnum) {
         Result result = new Result();
         result.setCode(businessEnum.getCode());
         result.setMsg(businessEnum.getDesc());
         result.setData(null);
         return result;
+    }
+
+    /**
+     * 处理用户的操作
+     * @param flag
+     * @return
+     */
+    public static Result<String> handle(Boolean flag) {
+        if (flag) {
+            return Result.success(null);
+        }
+        return Result.fail(BusinessEnum.OPERATION_FAIL);
     }
 }

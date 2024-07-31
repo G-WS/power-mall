@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandle {
+
     @ExceptionHandler(BusinessException.class)
     public Result<String> businessException(BusinessException e) {
         log.error(e.getMessage());
-        return Result.fail(BusinessEnum.OPERATION_FAIL.getCode(), e.getMessage());
+        return Result.fail(BusinessEnum.OPERATION_FAIL.getCode(),e.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
@@ -30,5 +31,4 @@ public class GlobalExceptionHandle {
         log.error(e.getMessage());
         throw e;
     }
-
 }

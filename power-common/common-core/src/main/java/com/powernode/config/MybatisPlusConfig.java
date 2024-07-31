@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * MyBatisPlus分页插件
  */
 @Configuration
-@MapperScan(basePackages = "com.powernode.mapper")
+@MapperScan("com.powernode.mapper")
 public class MybatisPlusConfig {
 
     /**

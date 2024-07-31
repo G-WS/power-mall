@@ -25,7 +25,7 @@ public interface AuthConstants {
     /**
      * 登出URL
      */
-    String logout_url = "/doLogout";
+    String LOGOUT_URL = "/doLogout";
 
     /**
      *登录类型

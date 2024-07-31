@@ -1,7 +1,6 @@
-package com.powernode;
+package com.powernode.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.api.naming.pojo.healthcheck.impl.Http;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.powernode.constant.AuthConstants;
 import com.powernode.constant.BusinessEnum;
@@ -45,7 +44,6 @@ public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 设置Security安全框架走自己的认证流程
-     *
      * @param auth
      * @throws Exception
      */
@@ -56,138 +54,132 @@ public class AuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //关闭跨站请求伪造
+        // 关闭跨站请求伪造
         http.cors().disable();
-        //关闭跨域请求
+        // 关闭跨域请求
         http.csrf().disable();
-        //关闭session使用策略
+        // 关闭session使用策略
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        //配置登录信息
+        // 配置登录信息
         http.formLogin()
-                .loginProcessingUrl(AuthConstants.LOGIN_URL)//设置登录URL
-                .successHandler(authenticationSuccessHandler())   //设置登录成功处理器
-                .failureHandler(authenticationFailureHandler());  //设置登录失败处理器
-        //配置登出信息
+                .loginProcessingUrl(AuthConstants.LOGIN_URL)// 设置登录URL
+                .successHandler(authenticationSuccessHandler())   // 设置登录成功处理器
+                .failureHandler(authenticationFailureHandler());  // 调协登录失败处理器
+
+        // 配置登出信息
         http.logout()
-                .logoutUrl(AuthConstants.logout_url)//设置登出URL
-                .logoutSuccessHandler(logoutSuccessHandler());//设置登出成功处理器
-        //要求所有请求都需要进行身份的认证
+                .logoutUrl(AuthConstants.LOGOUT_URL)// 设置登出URL
+                .logoutSuccessHandler(logoutSuccessHandler());// 设置登出成功处理器
+
+        // 要求所有请求都需要进行身份的认证
         http.authorizeHttpRequests().anyRequest().authenticated();
     }
 
     /**
      * 登录成功处理器
-     *
      * @return
      */
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return (request, response, authentication) -> {
-            //设置响应头信息
+            // 设置响应头信息
             response.setContentType(HttpConstants.APPLICATION_JSON);
             response.setCharacterEncoding(HttpConstants.UTF_8);
 
-            //使用UUID来当作token
+            // 使用UUID来当作TOKEN
             String token = UUID.randomUUID().toString();
-
-            //从security框架中获取认证用户对象(SecurityUser)，并转换为json格式的字符串
+            // 从security框架中获取认证用户对象(SecurityUser)并转换为json格式的字符串
             String userJsonStr = JSONObject.toJSONString(authentication.getPrincipal());
-            //将token当作key，认证用户对象的json格式的字符串当作value存放到redis中
-            stringRedisTemplate.opsForValue().set(AuthConstants.LOGIN_TOKEN_PREFIX + token, userJsonStr, Duration.ofSeconds(AuthConstants.TOKEN_TIME));
-            //封装一个登录统一结果对象
-            LoginResult loginResult = new LoginResult(token, AuthConstants.TOKEN_TIME);
-            //创建一个响应结果对象
+            // 将token当作key，认证用户对象的json格式的字符串当前value存放到redis中
+            stringRedisTemplate.opsForValue().set(AuthConstants.LOGIN_TOKEN_PREFIX+token,userJsonStr, Duration.ofSeconds(AuthConstants.TOKEN_TIME));
+
+            // 封装一个登录统一结果对象
+            LoginResult loginResult = new LoginResult(token,AuthConstants.TOKEN_TIME);
+            // 创建一个响应结果对象
             Result<Object> result = Result.success(loginResult);
-            //返回结果
+
+            // 返回结果
             ObjectMapper objectMapper = new ObjectMapper();
             String s = objectMapper.writeValueAsString(result);
             PrintWriter writer = response.getWriter();
             writer.write(s);
             writer.flush();
             writer.close();
-
         };
     }
 
     /**
      * 登录失败处理器
-     *
      * @return
      */
     @Bean
     public AuthenticationFailureHandler authenticationFailureHandler() {
         return (request, response, exception) -> {
-
-            //设置响应头信息
+            // 设置响应头信息
             response.setContentType(HttpConstants.APPLICATION_JSON);
             response.setCharacterEncoding(HttpConstants.UTF_8);
 
-            //创建统一响应结果对象
+            // 创建统一响应结果对象
             Result<Object> result = new Result<>();
             result.setCode(BusinessEnum.OPERATION_FAIL.getCode());
             if (exception instanceof BadCredentialsException) {
-                result.setMsg("用户名和密码不存在");
+                result.setMsg("用户名或密码有误");
             } else if (exception instanceof UsernameNotFoundException) {
                 result.setMsg("用户不存在");
             } else if (exception instanceof AccountExpiredException) {
-                result.setMsg("账号异常，请联系管理员");
+                result.setMsg("帐号异常，请联系管理员");
             } else if (exception instanceof AccountStatusException) {
-                result.setMsg("账号异常，请联系管理员");
+                result.setMsg("帐号异常，请联系管理员");
             } else if (exception instanceof InternalAuthenticationServiceException) {
                 result.setMsg(exception.getMessage());
             } else {
                 result.setMsg(BusinessEnum.OPERATION_FAIL.getDesc());
             }
-            //返回结果
 
+            // 返回结果
             ObjectMapper objectMapper = new ObjectMapper();
             String s = objectMapper.writeValueAsString(result);
             PrintWriter writer = response.getWriter();
             writer.write(s);
             writer.flush();
             writer.close();
+
         };
     }
 
     /**
      * 登出成功处理器
-     *
      * @return
      */
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
         return (request, response, authentication) -> {
-            //设置响应头信息
+            // 设置响应头信息
             response.setContentType(HttpConstants.APPLICATION_JSON);
             response.setCharacterEncoding(HttpConstants.UTF_8);
 
-            //从请求头获取token
+            // 从请求头中获取token
             String authorization = request.getHeader(AuthConstants.AUTHORIZATION);
             String token = authorization.replaceFirst(AuthConstants.BERAER, "");
+            // 将当前token从redis中删除
+            stringRedisTemplate.delete(AuthConstants.LOGIN_TOKEN_PREFIX+token);
 
-            //将token从redis中删除
-            stringRedisTemplate.delete(AuthConstants.LOGIN_TOKEN_PREFIX + token);
-
-            //创建统一响应结果对象
+            // 创建统一响应结果对象
             Result<Object> result = Result.success(null);
+            // 返回结果
             ObjectMapper objectMapper = new ObjectMapper();
             String s = objectMapper.writeValueAsString(result);
             PrintWriter writer = response.getWriter();
             writer.write(s);
             writer.flush();
             writer.close();
-
         };
     }
 
-    /**
-     * 密码加密器
-     *
-     * @return
-     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
