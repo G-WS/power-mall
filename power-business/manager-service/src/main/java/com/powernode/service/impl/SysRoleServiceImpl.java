@@ -145,7 +145,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     }
 
     @Override
-    @CacheEvict(key = ManagerConstants.SYS_ALL_ROLE_KEY)
+    @CacheEvict(key = ManagerConstants.SYS_ALL_ROLE_KEY)//清楚缓存
     @Transactional(rollbackFor = Exception.class)
     public Boolean removeSysRoleListByIds(List<Long> roleIdList) {
         // 批量或单个删除角色与权限关系集合
