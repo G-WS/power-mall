@@ -19,8 +19,9 @@ import java.util.List;
 @ConfigurationProperties(prefix = "gateway.white")
 @RefreshScope
 public class WhiteUrlsConfig {
+
     /**
-     * 放行的容器集合
+     * 放行的路径集合
      */
     private List<String> allowUrls;
 }
