@@ -69,56 +69,56 @@ public class SysUserController {
     }
 
 
-//    /**
-//     * 新增管理员
-//     * @param sysUser   系统管理员对象
-//     * @return
-//     */
-//    @ApiOperation("新增管理员")
-//    @PostMapping
-//    @PreAuthorize("hasAuthority('sys:user:save')")
-//    public Result<String> saveSysUser(@RequestBody SysUser sysUser) {
-//        Integer count = sysUserService.saveSysUser(sysUser);
-//        return Result.handle(count>0);
-//    }
-//
-//    /**
-//     * 根据标识查询系统管理员信息
-//     * @param id    管理员标识
-//     * @return
-//     */
-//    @ApiOperation("根据标识查询系统管理员信息")
-//    @GetMapping("info/{id}")
-//    @PreAuthorize("hasAuthority('sys:user:info')")
-//    public Result<SysUser> loadSysUserInfo(@PathVariable Long id) {
-//        SysUser sysUser = sysUserService.querySysUserInfoByUserId(id);
-//        return Result.success(sysUser);
-//    }
-//
-//    /**
-//     * 修改管理员信息
-//     * @param sysUser 管理员对象
-//     * @return
-//     */
-//    @ApiOperation("修改管理员信息")
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('sys:user:update')")
-//    public Result<String> modifySysUserInfo(@RequestBody SysUser sysUser) {
-//        Integer count = sysUserService.modifySysUserInfo(sysUser);
-//        return Result.handle(count>0);
-//    }
-//
-//    /**
-//     * 批量/单个删除管理员
-//     * @param userIds   管理员标识集合
-//     * @return
-//     */
-//    @ApiOperation("批量/单个删除管理员")
-//    @DeleteMapping("{userIds}")
-//    @PreAuthorize("hasAuthority('sys:user:delete')")
-//    public Result<String> removeSysUsers(@PathVariable List<Long> userIds) {
-//        Boolean removed = sysUserService.removeSysUserListByUserIds(userIds);
-//        return Result.handle(removed);
-//    }
+    /**
+     * 新增管理员
+     * @param sysUser   系统管理员对象
+     * @return
+     */
+    @ApiOperation("新增管理员")
+    @PostMapping
+    @PreAuthorize("hasAuthority('sys:user:save')")
+    public Result<String> saveSysUser(@RequestBody SysUser sysUser) {
+        Integer count = sysUserService.saveSysUser(sysUser);
+        return Result.handle(count>0);
+    }
+
+    /**
+     * 根据标识查询系统管理员信息
+     * @param id    管理员标识
+     * @return
+     */
+    @ApiOperation("根据标识查询系统管理员信息")
+    @GetMapping("info/{id}")
+    @PreAuthorize("hasAuthority('sys:user:info')")
+    public Result<SysUser> loadSysUserInfo(@PathVariable Long id) {
+        SysUser sysUser = sysUserService.querySysUserInfoByUserId(id);
+        return Result.success(sysUser);
+    }
+
+    /**
+     * 修改管理员信息
+     * @param sysUser 管理员对象
+     * @return
+     */
+    @ApiOperation("修改管理员信息")
+    @PutMapping
+    @PreAuthorize("hasAuthority('sys:user:update')")
+    public Result<String> modifySysUserInfo(@RequestBody SysUser sysUser) {
+        Integer count = sysUserService.modifySysUserInfo(sysUser);
+        return Result.handle(count>0);
+    }
+
+    /**
+     * 批量/单个删除管理员
+     * @param userIds   管理员标识集合
+     * @return
+     */
+    @ApiOperation("批量/单个删除管理员")
+    @DeleteMapping("{userIds}")
+    @PreAuthorize("hasAuthority('sys:user:delete')")
+    public Result<String> removeSysUsers(@PathVariable List<Long> userIds) {
+        Boolean removed = sysUserService.removeSysUserListByUserIds(userIds);
+        return Result.handle(removed);
+    }
 
 }
