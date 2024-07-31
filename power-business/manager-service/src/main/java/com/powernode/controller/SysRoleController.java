@@ -60,55 +60,55 @@ public class SysRoleController {
         return Result.success(page);
     }
 
-//    /**
-//     * 新增角色
-//     * @param sysRole 角色对象
-//     * @return
-//     */
-//    @ApiOperation("新增角色")
-//    @PostMapping
-//    @PreAuthorize("hasAuthority('sys:role:save')")
-//    public Result<String> saveSysRole(@RequestBody SysRole sysRole) {
-//        Boolean saved = sysRoleService.saveSysRole(sysRole);
-//        return Result.handle(saved);
-//    }
-//
-//    /**
-//     * 根据标识查询角色详情
-//     * @param roleId    角色标识
-//     * @return
-//     */
-//    @ApiOperation("根据标识查询角色详情")
-//    @GetMapping("info/{roleId}")
-//    @PreAuthorize("hasAuthority('sys:role:info')")
-//    public Result<SysRole> loadSysRoleInfo(@PathVariable Long roleId) {
-//        SysRole sysRole = sysRoleService.querySysRoleInfoByRoleId(roleId);
-//        return Result.success(sysRole);
-//    }
-//
-//    /**
-//     * 修改角色信息
-//     * @param sysRole 角色对象
-//     * @return
-//     */
-//    @ApiOperation("修改角色信息")
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('sys:role:update')")
-//    public Result<String> modifySysRole(@RequestBody SysRole sysRole) {
-//        Boolean updated = sysRoleService.modifySysRole(sysRole);
-//        return Result.handle(updated);
-//    }
-//
-//    /**
-//     * 批量/单个删除角色
-//     * @param roleIdList 角色id集合
-//     * @return
-//     */
-//    @ApiOperation("批量/单个删除角色")
-//    @DeleteMapping
-//    @PreAuthorize("hasAuthority('sys:role:delete')")
-//    public Result<String> removeSysRole(@RequestBody List<Long> roleIdList) {
-//        Boolean removed = sysRoleService.removeSysRoleListByIds(roleIdList);
-//        return Result.handle(removed);
-//    }
+    /**
+     * 新增角色
+     * @param sysRole 角色对象
+     * @return
+     */
+    @ApiOperation("新增角色")
+    @PostMapping
+    @PreAuthorize("hasAuthority('sys:role:save')")
+    public Result<String> saveSysRole(@RequestBody SysRole sysRole) {
+        Boolean saved = sysRoleService.saveSysRole(sysRole);
+        return Result.handle(saved);
+    }
+
+    /**
+     * 根据标识查询角色详情
+     * @param roleId    角色标识
+     * @return
+     */
+    @ApiOperation("根据标识查询角色详情")
+    @GetMapping("info/{roleId}")
+    @PreAuthorize("hasAuthority('sys:role:info')")
+    public Result<SysRole> loadSysRoleInfo(@PathVariable Long roleId) {
+        SysRole sysRole = sysRoleService.querySysRoleInfoByRoleId(roleId);
+        return Result.success(sysRole);
+    }
+
+    /**
+     * 修改角色信息
+     * @param sysRole 角色对象
+     * @return
+     */
+    @ApiOperation("修改角色信息")
+    @PutMapping
+    @PreAuthorize("hasAuthority('sys:role:update')")
+    public Result<String> modifySysRole(@RequestBody SysRole sysRole) {
+        Boolean updated = sysRoleService.modifySysRole(sysRole);
+        return Result.handle(updated);
+    }
+
+    /**
+     * 批量/单个删除角色
+     * @param roleIdList 角色id集合
+     * @return
+     */
+    @ApiOperation("批量/单个删除角色")
+    @DeleteMapping
+    @PreAuthorize("hasAuthority('sys:role:delete')")
+    public Result<String> removeSysRole(@RequestBody List<Long> roleIdList) {
+        Boolean removed = sysRoleService.removeSysRoleListByIds(roleIdList);
+        return Result.handle(removed);
+    }
 }
