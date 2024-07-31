@@ -120,6 +120,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 .eq(SysRoleMenu::getRoleId, roleId)
         );
 
+        //先删除再添加
         // 获取角色对应的权限id集合
         List<Long> menuIdList = sysRole.getMenuIdList();
         // 创建角色与权限关系集合对象
