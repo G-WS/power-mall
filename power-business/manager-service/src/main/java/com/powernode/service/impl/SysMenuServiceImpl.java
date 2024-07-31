@@ -106,7 +106,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         );
         // 判断子菜单集合是否有值
         if (CollectionUtil.isNotEmpty(sysMenuList) && sysMenuList.size() != 0) {
-            // 说明：当前菜单节点包含子节点集合
+            // 说明：当前菜单节点包含子节点集合，包含子节点不可以删除
             throw new BusinessException("当前菜单节点包含子节点集合，不可删除");
         }
         // 说明：当前菜单节点不包含子节点集合，可以删除
