@@ -20,10 +20,10 @@ spring:
   profiles:
     active: dev
 
-#mybatis-plus:
-#  global-config:
-#    db-config:
-#      update-strategy: not_empty  # 全局修改mybatisplus字段更新策略
+mybatis-plus:
+  global-config:
+    db-config:
+      update-strategy: not_empty  # 全局修改mybatisplus字段更新策略
 #server:
 #  port: 8081
 #swagger3:

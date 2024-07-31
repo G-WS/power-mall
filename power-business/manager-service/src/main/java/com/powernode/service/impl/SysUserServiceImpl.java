@@ -51,7 +51,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setCreateUserId(AuthUtils.getLoginUserId());
         sysUser.setCreateTime(new Date());
         sysUser.setShopId(1L);
-//        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
+        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         int i = sysUserMapper.insert(sysUser);
         if (i > 0) {
             // 获取管理员标识
