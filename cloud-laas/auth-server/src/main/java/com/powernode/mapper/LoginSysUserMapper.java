@@ -13,5 +13,5 @@ public interface LoginSysUserMapper extends BaseMapper<LoginSysUser> {
      * @param userId
      * @return
      */
-    Set<String> selectpermsByUserId(Long userId);
+    Set<String> selectPermsByUserId(Long userId);
 }
