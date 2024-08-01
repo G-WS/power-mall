@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +24,7 @@ public class ProdProp implements Serializable {
     /**
      * 属性id
      */
-    @TableId(value = "prop_id", type = IdType.INPUT)
+    @TableId(value = "prop_id", type = IdType.AUTO)
     @ApiModelProperty(value="属性id")
     private Long propId;
 
@@ -46,6 +48,9 @@ public class ProdProp implements Serializable {
     @TableField(value = "shop_id")
     @ApiModelProperty(value="店铺id")
     private Long shopId;
-
+    /////////////// 多条件分页查询 //////////////////////
+    @TableField(exist = false)
+    @ApiModelProperty("属性值集合")
+    private List<ProdPropValue> prodPropValues;
     private static final long serialVersionUID = 1L;
 }
