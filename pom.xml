@@ -36,7 +36,7 @@
         <common-base.version>1.0-SNAPSHOT</common-base.version>
         <common-core.version>1.0-SNAPSHOT</common-core.version>
         <fastjson.version>1.2.80</fastjson.version>
-        <aliyun-sdk-oss.version>3.15.1</aliyun-sdk-oss.version>
+        <aliyun-sdk-oss.version>3.17.4</aliyun-sdk-oss.version>
         <easyexcel.version>3.3.2</easyexcel.version>
         <aliyun-dx.version>2.0.24</aliyun-dx.version>
     </properties>
