@@ -99,34 +99,34 @@ public class ProdPropServiceImpl extends ServiceImpl<ProdPropMapper, ProdProp> i
         }
         return i>0;
     }
-//
-//    @Override
-//    @CacheEvict(key = ProductConstants.PROD_PROP_KEY)
-//    @Transactional(rollbackFor = Exception.class)
-//    public Boolean modifyProdSpec(ProdProp prodProp) {
-//        // 获取新的属性值对象集合
-//        List<ProdPropValue> prodPropValues = prodProp.getProdPropValues();
-//        // 批量修改属性值对象
-//        boolean flag = prodPropValueService.updateBatchById(prodPropValues);
-//        if (flag) {
-//            // 修改属性对象
-//            prodPropMapper.updateById(prodProp);
-//        }
-//        return flag;
-//    }
-//
-//    @Override
-//    @CacheEvict(key = ProductConstants.PROD_PROP_KEY)
-//    @Transactional(rollbackFor = Exception.class)
-//    public Boolean removeProdSpecByPropId(Long propId) {
-//        // 根据属性标识删除属性值
-//        prodPropValueMapper.delete(new LambdaQueryWrapper<ProdPropValue>()
-//                .eq(ProdPropValue::getPropId,propId)
-//        );
-//        // 删除属性对象
-//        return prodPropMapper.deleteById(propId)>0;
-//    }
-//
+
+    @Override
+    @CacheEvict(key = ProductConstants.PROD_PROP_KEY)
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean modifyProdSpec(ProdProp prodProp) {
+        // 获取新的属性值对象集合
+        List<ProdPropValue> prodPropValues = prodProp.getProdPropValues();
+        // 批量修改属性值对象
+        boolean flag = prodPropValueService.updateBatchById(prodPropValues);
+        if (flag) {
+            // 修改属性对象
+            prodPropMapper.updateById(prodProp);
+        }
+        return flag;
+    }
+
+    @Override
+    @CacheEvict(key = ProductConstants.PROD_PROP_KEY)
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean removeProdSpecByPropId(Long propId) {
+        // 根据属性标识删除属性值
+        prodPropValueMapper.delete(new LambdaQueryWrapper<ProdPropValue>()
+                .eq(ProdPropValue::getPropId,propId)
+        );
+        // 删除属性对象
+        return prodPropMapper.deleteById(propId)>0;
+    }
+
 //    @Override
 //    @Cacheable(key = ProductConstants.PROD_PROP_KEY)
 //    public List<ProdProp> queryProdPropList() {

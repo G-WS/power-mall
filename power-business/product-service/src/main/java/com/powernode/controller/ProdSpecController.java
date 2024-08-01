@@ -74,19 +74,19 @@ public class ProdSpecController {
         return Result.handle(modified);
     }
 
-//    /**
-//     * 删除商品规格
-//     * @param propId 属性标识
-//     * @return
-//     */
-//    @ApiOperation("删除商品规格")
-//    @DeleteMapping("{propId}")
-//    @PreAuthorize("hasAuthority('prod:spec:delete')")
-//    public Result<String> removeProdSpec(@PathVariable Long propId) {
-//        Boolean removed = prodPropService.removeProdSpecByPropId(propId);
-//        return Result.handle(removed);
-//    }
-//
+    /**
+     * 删除商品规格
+     * @param propId 属性标识
+     * @return
+     */
+    @ApiOperation("删除商品规格")
+    @DeleteMapping("{propId}")
+    @PreAuthorize("hasAuthority('prod:spec:delete')")
+    public Result<String> removeProdSpec(@PathVariable Long propId) {
+        Boolean removed = prodPropService.removeProdSpecByPropId(propId);
+        return Result.handle(removed);
+    }
+
 ////    prod/spec/list
 //
 //    /**

@@ -12,7 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@ApiModel(description="prod_prop_value")
+@ApiModel(value="com-powernode-domain-ProdPropValue")
 @Data
 @Builder
 @AllArgsConstructor
@@ -22,7 +22,7 @@ public class ProdPropValue implements Serializable {
     /**
      * 属性值ID
      */
-    @TableId(value = "value_id", type = IdType.INPUT)
+    @TableId(value = "value_id", type = IdType.AUTO)
     @ApiModelProperty(value="属性值ID")
     private Long valueId;
 

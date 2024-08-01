@@ -31,14 +31,14 @@ public interface ProdPropService extends IService<ProdProp>{
      * @return
      */
     Boolean modifyProdSpec(ProdProp prodProp);
-//
-//    /**
-//     * 删除商品规格
-//     * @param propId
-//     * @return
-//     */
-//    Boolean removeProdSpecByPropId(Long propId);
-//
+
+    /**
+     * 删除商品规格
+     * @param propId
+     * @return
+     */
+    Boolean removeProdSpecByPropId(Long propId);
+
 //    /**
 //     * 查询系统商品属性集合
 //     * @return
