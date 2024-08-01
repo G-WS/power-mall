@@ -36,15 +36,15 @@ public class ProdTagServiceImpl extends ServiceImpl<ProdTagMapper, ProdTag> impl
         return prodTagMapper.insert(prodTag) > 0;
     }
 
-//    @Override
-//    @Caching(evict = {
-//            @CacheEvict(key = ProductConstants.PROD_TAG_NORMAL_KEY),
-//            @CacheEvict(key = ProductConstants.WX_PROD_TAG)
-//    })
-//    public Boolean modifyProdTag(ProdTag prodTag) {
-//        prodTag.setUpdateTime(new Date());
-//        return prodTagMapper.updateById(prodTag)>0;
-//    }
+    @Override
+    @Caching(evict = {
+            @CacheEvict(key = ProductConstants.PROD_TAG_NORMAL_KEY),
+            @CacheEvict(key = ProductConstants.WX_PROD_TAG)
+    })
+    public Boolean modifyProdTag(ProdTag prodTag) {
+        prodTag.setUpdateTime(new Date());
+        return prodTagMapper.updateById(prodTag)>0;
+    }
 //
 //    @Override
 //    @Caching(evict = {

@@ -84,32 +84,32 @@ public class ProdTagController {
         return Result.success(prodTag);
     }
 
-//    /**
-//     * 修改商品分组标签信息
-//     * @param prodTag 商品分组标签对象
-//     * @return
-//     */
-//    @ApiOperation("修改商品分组标签信息")
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('prod:prodTag:update')")
-//    public Result<String> modifyProdTag(@RequestBody ProdTag prodTag) {
-//        Boolean modified = prodTagService.modifyProdTag(prodTag);
-//        return Result.handle(modified);
-//    }
-//
-//    /**
-//     * 根据标识删除商品分组标签
-//     * @param tagId 分组标签标识
-//     * @return
-//     */
-//    @ApiOperation("根据标识删除商品分组标签")
-//    @DeleteMapping("{tagId}")
-//    @PreAuthorize("hasAuthority('prod:prodTag:delete')")
-//    public Result<String> removeProdTag(@PathVariable Long tagId) {
-//        boolean removed = prodTagService.removeById(tagId);
-//        return Result.handle(removed);
-//    }
-//
+    /**
+     * 修改商品分组标签信息
+     * @param prodTag 商品分组标签对象
+     * @return
+     */
+    @ApiOperation("修改商品分组标签信息")
+    @PutMapping
+    @PreAuthorize("hasAuthority('prod:prodTag:update')")
+    public Result<String> modifyProdTag(@RequestBody ProdTag prodTag) {
+        Boolean modified = prodTagService.modifyProdTag(prodTag);
+        return Result.handle(modified);
+    }
+
+    /**
+     * 根据标识删除商品分组标签
+     * @param tagId 分组标签标识
+     * @return
+     */
+    @ApiOperation("根据标识删除商品分组标签")
+    @DeleteMapping("{tagId}")
+    @PreAuthorize("hasAuthority('prod:prodTag:delete')")
+    public Result<String> removeProdTag(@PathVariable Long tagId) {
+        boolean removed = prodTagService.removeById(tagId);
+        return Result.handle(removed);
+    }
+
 //    /**
 //     * 查询状态正常的商品分组标签集合
 //     * @return

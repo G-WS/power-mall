@@ -15,13 +15,13 @@ public interface ProdTagService extends IService<ProdTag>{
      */
     Boolean saveProdTag(ProdTag prodTag);
 
-//    /**
-//     * 修改商品分组标签信息
-//     * @param prodTag
-//     * @return
-//     */
-//    Boolean modifyProdTag(ProdTag prodTag);
-//
+    /**
+     * 修改商品分组标签信息
+     * @param prodTag
+     * @return
+     */
+    Boolean modifyProdTag(ProdTag prodTag);
+
 //    /**
 //     * 查询状态正常的商品分组标签集合
 //     * @return
