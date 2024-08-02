@@ -7,17 +7,20 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.powernode.constant.BusinessEnum;
-
+//import com.powernode.constant.QueueConstants;
 import com.powernode.domain.*;
 import com.powernode.ex.handler.BusinessException;
-
+//import com.powernode.feign.OrderBasketFeign;
+import com.powernode.feign.OrderMemberFeign;
+//import com.powernode.feign.OrderProdFeign;
 import com.powernode.mapper.OrderItemMapper;
 import com.powernode.mapper.OrderMapper;
 import com.powernode.model.*;
 import com.powernode.service.OrderItemService;
 import com.powernode.service.OrderService;
 import com.powernode.util.AuthUtils;
-
+//import com.powernode.vo.OrderStatusCount;
+//import com.powernode.vo.OrderVo;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +42,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private OrderItemMapper orderItemMapper;
 
-//    @Autowired
-//    private OrderMemberFeign orderMemberFeign;
-//
+    @Autowired
+    private OrderMemberFeign orderMemberFeign;
+
 //    @Autowired
 //    private OrderProdFeign orderProdFeign;
-//
+
 //    @Autowired
 //    private OrderBasketFeign orderBasketFeign;
 
@@ -89,41 +92,41 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         return page;
     }
 
-//    @Override
-//    public Order queryOrderDetailByOrderNumber(Long orderNumber) {
-//        // 根据订单编号查询订单信息
-//        Order order = orderMapper.selectOne(new LambdaQueryWrapper<Order>()
-//                .eq(Order::getOrderNumber, orderNumber)
-//        );
-//        // 根据订单编号查询订单商品条目对象集合
-//        List<OrderItem> orderItemList = orderItemMapper.selectList(new LambdaQueryWrapper<OrderItem>()
-//                .eq(OrderItem::getOrderNumber, orderNumber)
-//        );
-//        order.setOrderItems(orderItemList);
-//        // 从订单记录中获取订单收货地址标识
-//        Long addrOrderId = order.getAddrOrderId();
-//        // 远程调用：根据收货地址标识查询地址详情
-//        Result<MemberAddr> result = orderMemberFeign.getMemberAddrById(addrOrderId);
-//        // 判断结果
-//        if (result.getCode().equals(BusinessEnum.OPERATION_FAIL.getCode())) {
-//            throw new BusinessException("远程接口调用失败：根据收货地址标识查询收货地址信息");
-//        }
-//        // 获取数据
-//        MemberAddr memberAddr = result.getData();
-//        order.setUserAddrOrder(memberAddr);
-//
-//        // 远程接口调用：根据会员openid查询会员昵称
-//        Result<String> result1 = orderMemberFeign.getNickNameByOpenId(order.getOpenId());
-//        if (result1.getCode().equals(BusinessEnum.OPERATION_FAIL.getCode())) {
-//            throw new BusinessException("远程接口调用失败：根据会员openId查询会员昵称");
-//        }
-//        // 获取数据
-//        String nickName = result1.getData();
-//        order.setNickName(nickName);
-//
-//        return order;
-//    }
-//
+    @Override
+    public Order queryOrderDetailByOrderNumber(Long orderNumber) {
+        // 根据订单编号查询订单信息
+        Order order = orderMapper.selectOne(new LambdaQueryWrapper<Order>()
+                .eq(Order::getOrderNumber, orderNumber)
+        );
+        // 根据订单编号查询订单商品条目对象集合
+        List<OrderItem> orderItemList = orderItemMapper.selectList(new LambdaQueryWrapper<OrderItem>()
+                .eq(OrderItem::getOrderNumber, orderNumber)
+        );
+        order.setOrderItems(orderItemList);
+        // 从订单记录中获取订单收货地址标识
+        Long addrOrderId = order.getAddrOrderId();
+        // 远程调用：根据收货地址标识查询地址详情
+        Result<MemberAddr> result = orderMemberFeign.getMemberAddrById(addrOrderId);
+        // 判断结果
+        if (result.getCode().equals(BusinessEnum.OPERATION_FAIL.getCode())) {
+            throw new BusinessException("远程接口调用失败：根据收货地址标识查询收货地址信息");
+        }
+        // 获取数据
+        MemberAddr memberAddr = result.getData();
+        order.setUserAddrOrder(memberAddr);
+
+        // 远程接口调用：根据会员openid查询会员昵称
+        Result<String> result1 = orderMemberFeign.getNickNameByOpenId(order.getOpenId());
+        if (result1.getCode().equals(BusinessEnum.OPERATION_FAIL.getCode())) {
+            throw new BusinessException("远程接口调用失败：根据会员openId查询会员昵称");
+        }
+        // 获取数据
+        String nickName = result1.getData();
+        order.setNickName(nickName);
+
+        return order;
+    }
+
 //    @Override
 //    public OrderStatusCount queryMemberOrderStatusCount() {
 //        // 获取会员openid

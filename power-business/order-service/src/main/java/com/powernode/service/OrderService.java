@@ -20,13 +20,13 @@ public interface OrderService extends IService<Order>{
      */
     Page<Order> queryOrderPage(Page<Order> page, String orderNumber, Integer status, Date startTime, Date endTime);
 
-//    /**
-//     * 根据订单编号查询订单详情
-//     * @param orderNumber
-//     * @return
-//     */
-//    Order queryOrderDetailByOrderNumber(Long orderNumber);
-//
+    /**
+     * 根据订单编号查询订单详情
+     * @param orderNumber
+     * @return
+     */
+    Order queryOrderDetailByOrderNumber(Long orderNumber);
+
 //    /**
 //     * 查询会员订单各状态数量
 //     * @return

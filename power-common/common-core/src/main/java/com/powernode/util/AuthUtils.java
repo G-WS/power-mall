@@ -35,11 +35,11 @@ public class AuthUtils {
         return getLoginUser().getPerms();
     }
 
-//    /**
-//     * 获取Security容器中认证用户对象的openid
-//     * @return
-//     */
-//    public static String getMemberOpenId() {
-//        return getLoginUser().getOpenid();
-//    }
+    /**
+     * 获取Security容器中认证用户对象的openid
+     * @return
+     */
+    public static String getMemberOpenId() {
+        return getLoginUser().getOpenid();
+    }
 }

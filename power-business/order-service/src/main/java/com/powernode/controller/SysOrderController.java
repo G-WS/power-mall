@@ -51,40 +51,40 @@ public class SysOrderController {
         page = orderService.queryOrderPage(page,orderNumber,status,startTime,endTime);
         return Result.success(page);
     }
-//
-//    /**
-//     * 根据订单编号查询订单详情
-//     * @param orderNumber 订单编号
-//     * @return
-//     */
-//    @ApiOperation("根据订单编号查询订单详情")
-//    @GetMapping("orderInfo/{orderNumber}")
-//    @PreAuthorize("hasAuthority('order:order:info')")
-//    public Result<Order> loadOrderDetail(@PathVariable Long orderNumber) {
-//        Order order = orderService.queryOrderDetailByOrderNumber(orderNumber);
-//        return Result.success(order);
-//    }
-//
-//    /**
-//     * 导出销售记录
-//     * @return
-//     */
-//
-////    order/order/soldExcel
-//    @ApiOperation("导出销售记录")
-//    @GetMapping("soldExcel")
-//    @PreAuthorize("hasAuthority('order:order:soldExcel')")
-//    public Result<String> exportSoleOrderRecordExcel() {
-//        // 查询所有销售记录
-//        List<Order> list = orderService.list(new LambdaQueryWrapper<Order>()
-//                .orderByDesc(Order::getCreateTime)
-//        );
-//
-//        String fileName = "D:\\course\\19-PowerMall\\" + System.currentTimeMillis() + ".xlsx";
-//        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
-//        // 如果这里想使用03 则 传入excelType参数即可
-//        EasyExcel.write(fileName, Order.class).sheet("模板111").doWrite(list);
-//        return Result.success(null);
-//    }
+
+    /**
+     * 根据订单编号查询订单详情
+     * @param orderNumber 订单编号
+     * @return
+     */
+    @ApiOperation("根据订单编号查询订单详情")
+    @GetMapping("orderInfo/{orderNumber}")
+    @PreAuthorize("hasAuthority('order:order:info')")
+    public Result<Order> loadOrderDetail(@PathVariable Long orderNumber) {
+        Order order = orderService.queryOrderDetailByOrderNumber(orderNumber);
+        return Result.success(order);
+    }
+
+    /**
+     * 导出销售记录
+     * @return
+     */
+
+//    order/order/soldExcel
+    @ApiOperation("导出销售记录")
+    @GetMapping("soldExcel")
+    @PreAuthorize("hasAuthority('order:order:soldExcel')")
+    public Result<String> exportSoleOrderRecordExcel() {
+        // 查询所有销售记录
+        List<Order> list = orderService.list(new LambdaQueryWrapper<Order>()
+                .orderByDesc(Order::getCreateTime)
+        );
+
+        String fileName = "C:\\zhy\\work\\findWork\\" + System.currentTimeMillis() + ".xlsx";
+        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        // 如果这里想使用03 则 传入excelType参数即可
+        EasyExcel.write(fileName, Order.class).sheet("模板111").doWrite(list);
+        return Result.success(null);
+    }
 
 }
