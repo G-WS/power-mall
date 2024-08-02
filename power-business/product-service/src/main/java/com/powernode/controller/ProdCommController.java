@@ -65,19 +65,19 @@ public class ProdCommController {
         return Result.success(prodComm);
     }
 
-//    /**
-//     * 回复和审核商品评论
-//     * @param prodComm  商品评论对象
-//     * @return
-//     */
-//    @ApiOperation("回复和审核商品评论")
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('prod:prodComm:update')")
-//    public Result<String> replyAndExamineProdComm(@RequestBody ProdComm prodComm) {
-//        Boolean flag = prodCommService.replyAndExamineProdComm(prodComm);
-//        return Result.handle(flag);
-//    }
-//
+    /**
+     * 回复和审核商品评论
+     * @param prodComm  商品评论对象
+     * @return
+     */
+    @ApiOperation("回复和审核商品评论")
+    @PutMapping
+    @PreAuthorize("hasAuthority('prod:prodComm:update')")
+    public Result<String> replyAndExamineProdComm(@RequestBody ProdComm prodComm) {
+        Boolean flag = prodCommService.replyAndExamineProdComm(prodComm);
+        return Result.handle(flag);
+    }
+
 //    /**
 //     * 小程序查询商品评论总览信息
 //     * @param prodId    商品id

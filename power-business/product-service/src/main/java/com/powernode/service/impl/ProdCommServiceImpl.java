@@ -33,17 +33,17 @@ public class ProdCommServiceImpl extends ServiceImpl<ProdCommMapper, ProdComm> i
 //    private ProdMemberFeign prodMemberFeign;
 
 
-//    @Override
-//    public Boolean replyAndExamineProdComm(ProdComm prodComm) {
-//        // 获取商品评论内容
-//        String replyContent = prodComm.getReplyContent();
-//        // 判断评论内容是否有值
-//        if (StringUtils.hasText(replyContent)) {
-//            prodComm.setReplyTime(new Date());
-//            prodComm.setReplySts(1);
-//        }
-//        return prodCommMapper.updateById(prodComm)>0;
-//    }
+    @Override
+    public Boolean replyAndExamineProdComm(ProdComm prodComm) {
+        // 获取商品评论内容
+        String replyContent = prodComm.getReplyContent();
+        // 判断评论内容是否有值
+        if (StringUtils.hasText(replyContent)) {
+            prodComm.setReplyTime(new Date());
+            prodComm.setReplySts(1);
+        }
+        return prodCommMapper.updateById(prodComm)>0;
+    }
 
 //    @Override
 //    public ProdCommData queryWxProdCommDataByProdId(Long prodId) {

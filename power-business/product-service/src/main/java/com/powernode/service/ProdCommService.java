@@ -8,12 +8,12 @@ import com.powernode.vo.ProdCommData;
 public interface ProdCommService extends IService<ProdComm>{
 
 
-//    /**
-//     * 回复和审核商品评论
-//     * @param prodComm
-//     * @return
-//     */
-//    Boolean replyAndExamineProdComm(ProdComm prodComm);
+    /**
+     * 回复和审核商品评论
+     * @param prodComm
+     * @return
+     */
+    Boolean replyAndExamineProdComm(ProdComm prodComm);
 //
 //    /**
 //     * 小程序查询商品评论总览信息
