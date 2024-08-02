@@ -110,18 +110,18 @@ public class ProdTagController {
         return Result.handle(removed);
     }
 
-//    /**
-//     * 查询状态正常的商品分组标签集合
-//     * @return
-//     */
-////    prod/prodTag/listTagList
-//    @ApiOperation("查询状态正常的商品分组标签集合")
-//    @GetMapping("listTagList")
-//    @PreAuthorize("hasAuthority('prod:prodTag:page')")
-//    public Result<List<ProdTag>> loadProdTagList() {
-//        List<ProdTag> list = prodTagService.queryProdTagList();
-//        return Result.success(list);
-//    }
+    /**
+     * 查询状态正常的商品分组标签集合
+     * @return
+     */
+//    prod/prodTag/listTagList
+    @ApiOperation("查询状态正常的商品分组标签集合")
+    @GetMapping("listTagList")
+    @PreAuthorize("hasAuthority('prod:prodTag:page')")
+    public Result<List<ProdTag>> loadProdTagList() {
+        List<ProdTag> list = prodTagService.queryProdTagList();
+        return Result.success(list);
+    }
 //
 //    /////////////////////// 微信小程序数据接口 /////////////////////////
 //

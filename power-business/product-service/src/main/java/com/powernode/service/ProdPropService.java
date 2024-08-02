@@ -39,9 +39,9 @@ public interface ProdPropService extends IService<ProdProp>{
      */
     Boolean removeProdSpecByPropId(Long propId);
 
-//    /**
-//     * 查询系统商品属性集合
-//     * @return
-//     */
-//    List<ProdProp> queryProdPropList();
+    /**
+     * 查询系统商品属性集合
+     * @return
+     */
+    List<ProdProp> queryProdPropList();
 }

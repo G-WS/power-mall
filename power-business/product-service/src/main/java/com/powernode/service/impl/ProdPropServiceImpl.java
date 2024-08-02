@@ -127,9 +127,9 @@ public class ProdPropServiceImpl extends ServiceImpl<ProdPropMapper, ProdProp> i
         return prodPropMapper.deleteById(propId)>0;
     }
 
-//    @Override
-//    @Cacheable(key = ProductConstants.PROD_PROP_KEY)
-//    public List<ProdProp> queryProdPropList() {
-//        return prodPropMapper.selectList(null);
-//    }
+    @Override
+    @Cacheable(key = ProductConstants.PROD_PROP_KEY)
+    public List<ProdProp> queryProdPropList() {
+        return prodPropMapper.selectList(null);
+    }
 }

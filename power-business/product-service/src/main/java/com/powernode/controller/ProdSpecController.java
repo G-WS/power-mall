@@ -87,34 +87,34 @@ public class ProdSpecController {
         return Result.handle(removed);
     }
 
-////    prod/spec/list
-//
-//    /**
-//     * 查询系统商品属性集合
-//     * @return
-//     */
-//    @ApiOperation("查询系统商品属性集合")
-//    @GetMapping("list")
-//    @PreAuthorize("hasAuthority('prod:spec:page')")
-//    public Result<List<ProdProp>> loadProdPropList() {
-//        List<ProdProp> prodProps = prodPropService.queryProdPropList();
-//        return Result.success(prodProps);
-//    }
-//
-////    prod/spec/listSpecValue/85
-//
-//    /**
-//     * 根据商品属性id查询属性值集合
-//     * @param propId 商品属性id
-//     * @return
-//     */
-//    @ApiOperation("根据商品属性id查询属性值集合")
-//    @GetMapping("listSpecValue/{propId}")
-//    @PreAuthorize("hasAuthority('prod:spec:page')")
-//    public Result<List<ProdPropValue>> loadProdPropValues(@PathVariable Long propId) {
-//        List<ProdPropValue> prodPropValues = prodPropValueService.list(new LambdaQueryWrapper<ProdPropValue>()
-//                .eq(ProdPropValue::getPropId,propId)
-//        );
-//        return Result.success(prodPropValues);
-//    }
+//    prod/spec/list
+
+    /**
+     * 查询系统商品属性集合
+     * @return
+     */
+    @ApiOperation("查询系统商品属性集合")
+    @GetMapping("list")
+    @PreAuthorize("hasAuthority('prod:spec:page')")
+    public Result<List<ProdProp>> loadProdPropList() {
+        List<ProdProp> prodProps = prodPropService.queryProdPropList();
+        return Result.success(prodProps);
+    }
+
+//    prod/spec/listSpecValue/85
+
+    /**
+     * 根据商品属性id查询属性值集合
+     * @param propId 商品属性id
+     * @return
+     */
+    @ApiOperation("根据商品属性id查询属性值集合")
+    @GetMapping("listSpecValue/{propId}")
+    @PreAuthorize("hasAuthority('prod:spec:page')")
+    public Result<List<ProdPropValue>> loadProdPropValues(@PathVariable Long propId) {
+        List<ProdPropValue> prodPropValues = prodPropValueService.list(new LambdaQueryWrapper<ProdPropValue>()
+                .eq(ProdPropValue::getPropId,propId)
+        );
+        return Result.success(prodPropValues);
+    }
 }

@@ -22,12 +22,12 @@ public interface ProdTagService extends IService<ProdTag>{
      */
     Boolean modifyProdTag(ProdTag prodTag);
 
-//    /**
-//     * 查询状态正常的商品分组标签集合
-//     * @return
-//     */
-//    List<ProdTag> queryProdTagList();
-//
+    /**
+     * 查询状态正常的商品分组标签集合
+     * @return
+     */
+    List<ProdTag> queryProdTagList();
+
 //    /**
 //     * 查询小程序商品分组标签
 //     * @return

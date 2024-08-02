@@ -45,24 +45,24 @@ public class ProdTagServiceImpl extends ServiceImpl<ProdTagMapper, ProdTag> impl
         prodTag.setUpdateTime(new Date());
         return prodTagMapper.updateById(prodTag)>0;
     }
-//
-//    @Override
-//    @Caching(evict = {
-//            @CacheEvict(key = ProductConstants.PROD_TAG_NORMAL_KEY),
-//            @CacheEvict(key = ProductConstants.WX_PROD_TAG)
-//    })
-//    public boolean removeById(Serializable id) {
-//        return super.removeById(id);
-//    }
-//
-//    @Override
-//    @Cacheable(key = ProductConstants.PROD_TAG_NORMAL_KEY)
-//    public List<ProdTag> queryProdTagList() {
-//        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>()
-//                .eq(ProdTag::getStatus,1)
-//                .orderByDesc(ProdTag::getSeq)
-//        );
-//    }
+
+    @Override
+    @Caching(evict = {
+            @CacheEvict(key = ProductConstants.PROD_TAG_NORMAL_KEY),
+            @CacheEvict(key = ProductConstants.WX_PROD_TAG)
+    })
+    public boolean removeById(Serializable id) {
+        return super.removeById(id);
+    }
+
+    @Override
+    @Cacheable(key = ProductConstants.PROD_TAG_NORMAL_KEY)
+    public List<ProdTag> queryProdTagList() {
+        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>()
+                .eq(ProdTag::getStatus,1)
+                .orderByDesc(ProdTag::getSeq)
+        );
+    }
 //
 //    @Override
 //    @Cacheable(key = ProductConstants.WX_PROD_TAG)
