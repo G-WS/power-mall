@@ -30,10 +30,11 @@ public class SysMemberController {
 
     /**
      * 多条件分页查询会员
-     * @param current   页码
-     * @param size      每页显示条件
-     * @param nickName  会员昵称
-     * @param status    会员状态
+     *
+     * @param current  页码
+     * @param size     每页显示条件
+     * @param nickName 会员昵称
+     * @param status   会员状态
      * @return
      */
 
@@ -45,11 +46,11 @@ public class SysMemberController {
                                                @RequestParam(required = false) String nickName,
                                                @RequestParam(required = false) Integer status) {
         // 创建会员分页对象
-        Page<Member> page = new Page<>(current,size);
+        Page<Member> page = new Page<>(current, size);
         // 多条件分页查询会员
-        page = memberService.page(page,new LambdaQueryWrapper<Member>()
-                .eq(ObjectUtil.isNotNull(status),Member::getStatus,status)
-                .like(StringUtils.hasText(nickName),Member::getNickName,nickName)
+        page = memberService.page(page, new LambdaQueryWrapper<Member>()
+                .eq(ObjectUtil.isNotNull(status), Member::getStatus, status)
+                .like(StringUtils.hasText(nickName), Member::getNickName, nickName)
                 .orderByDesc(Member::getCreateTime)
         );
         return Result.success(page);
@@ -57,6 +58,7 @@ public class SysMemberController {
 
     /**
      * 根据标识查询会员信息
+     *
      * @param id 会员id
      * @return
      */
@@ -66,7 +68,7 @@ public class SysMemberController {
     @PreAuthorize("hasAuthority('admin:user:info')")
     public Result<Member> loadMemberInfo(@PathVariable Long id) {
         Member member = memberService.getOne(new LambdaQueryWrapper<Member>()
-                .select(Member::getId, Member::getOpenId, Member::getPic, Member::getNickName,Member::getStatus)
+                .select(Member::getId, Member::getOpenId, Member::getPic, Member::getNickName, Member::getStatus)
                 .eq(Member::getId, id)
         );
         return Result.success(member);
@@ -74,6 +76,7 @@ public class SysMemberController {
 
     /**
      * 修改会员状态
+     *
      * @param member 会员对象（id,status）
      * @return
      */
@@ -88,6 +91,7 @@ public class SysMemberController {
 
     /**
      * 批量删除会员
+     *
      * @param ids 会员id集合
      * @return
      */
@@ -107,14 +111,14 @@ public class SysMemberController {
         boolean removed = memberService.updateBatchById(memberList);
         return Result.handle(removed);
     }
-//
-//    //////////////////////////// feign 接口 ////////////////////////
-//    @GetMapping("getNickNameByOpenId")
-//    public Result<String> getNickNameByOpenId(@RequestParam String openId) {
-//        Member member = memberService.getOne(new LambdaQueryWrapper<Member>()
-//                .select(Member::getNickName)
-//                .eq(Member::getOpenId, openId)
-//        );
-//        return Result.success(member.getNickName());
-//    }
+
+    //////////////////////////// feign 接口 ////////////////////////
+    @GetMapping("getNickNameByOpenId")
+    public Result<String> getNickNameByOpenId(@RequestParam String openId) {
+        Member member = memberService.getOne(new LambdaQueryWrapper<Member>()
+                .select(Member::getNickName)
+                .eq(Member::getOpenId, openId)
+        );
+        return Result.success(member.getNickName());
+    }
 }
