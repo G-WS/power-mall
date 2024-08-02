@@ -117,6 +117,7 @@ public class MemberAddrServiceImpl extends ServiceImpl<MemberAddrMapper, MemberA
                 .eq(MemberAddr::getOpenId,openId)
         );
 
+
         // 将当前收货地址设置的新的默认收货地址
         newDefaultMemberAddr.setCommonAddr(1);
         newDefaultMemberAddr.setUpdateTime(new Date());
