@@ -6,17 +6,18 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * 主页轮播图
  */
-@ApiModel(description="主页轮播图")
+@ApiModel(value="com-powernode-domain-IndexImg")
 @Data
 @Builder
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class IndexImg implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "img_id", type = IdType.INPUT)
+    @TableId(value = "img_id", type = IdType.AUTO)
     @ApiModelProperty(value="主键")
     private Long imgId;
 
@@ -68,7 +69,7 @@ public class IndexImg implements Serializable {
     /**
      * 状态
      */
-    @TableField(value = "`status`")
+    @TableField(value = "status")
     @ApiModelProperty(value="状态")
     private Integer status;
 
@@ -96,9 +97,18 @@ public class IndexImg implements Serializable {
     /**
      * 关联商品类型，0已关联商品,-1未关联商品
      */
-    @TableField(value = "`type`")
+    @TableField(value = "type")
     @ApiModelProperty(value="关联商品类型，0已关联商品,-1未关联商品")
     private Integer type;
+
+    ///////////////////// 查询轮播图详情 ////////////////////////////
+    @TableField(exist = false)
+    @ApiModelProperty("商品图片")
+    private String pic;
+
+    @TableField(exist = false)
+    @ApiModelProperty("商品名称")
+    private String prodName;
 
     private static final long serialVersionUID = 1L;
 }
