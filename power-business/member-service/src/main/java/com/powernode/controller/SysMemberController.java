@@ -54,24 +54,24 @@ public class SysMemberController {
         );
         return Result.success(page);
     }
-//
-//    /**
-//     * 根据标识查询会员信息
-//     * @param id 会员id
-//     * @return
-//     */
-////    admin/user/info/5
-//    @ApiOperation("根据标识查询会员信息")
-//    @GetMapping("info/{id}")
-//    @PreAuthorize("hasAuthority('admin:user:info')")
-//    public Result<Member> loadMemberInfo(@PathVariable Long id) {
-//        Member member = memberService.getOne(new LambdaQueryWrapper<Member>()
-//                .select(Member::getId, Member::getOpenId, Member::getPic, Member::getNickName,Member::getStatus)
-//                .eq(Member::getId, id)
-//        );
-//        return Result.success(member);
-//    }
-//
+
+    /**
+     * 根据标识查询会员信息
+     * @param id 会员id
+     * @return
+     */
+//    admin/user/info/5
+    @ApiOperation("根据标识查询会员信息")
+    @GetMapping("info/{id}")
+    @PreAuthorize("hasAuthority('admin:user:info')")
+    public Result<Member> loadMemberInfo(@PathVariable Long id) {
+        Member member = memberService.getOne(new LambdaQueryWrapper<Member>()
+                .select(Member::getId, Member::getOpenId, Member::getPic, Member::getNickName,Member::getStatus)
+                .eq(Member::getId, id)
+        );
+        return Result.success(member);
+    }
+
 //    /**
 //     * 修改会员状态
 //     * @param member 会员对象（id,status）
