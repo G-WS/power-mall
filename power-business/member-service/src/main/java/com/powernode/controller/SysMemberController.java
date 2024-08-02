@@ -86,27 +86,27 @@ public class SysMemberController {
         return Result.handle(updated);
     }
 
-//    /**
-//     * 批量删除会员
-//     * @param ids 会员id集合
-//     * @return
-//     */
-//    @ApiOperation("批量删除会员")
-//    @DeleteMapping
-//    @PreAuthorize("hasAuthority('admin:user:delete')")
-//    public Result<String> removeMembers(@RequestBody List<Integer> ids) {
-//        // 创建会员对象集合
-//        List<Member> memberList = new ArrayList<>();
-//        // 循环遍历会员id集合
-//        ids.forEach(id -> {
-//            Member member = new Member();
-//            member.setId(id);
-//            member.setStatus(-1);
-//            memberList.add(member);
-//        });
-//        boolean removed = memberService.updateBatchById(memberList);
-//        return Result.handle(removed);
-//    }
+    /**
+     * 批量删除会员
+     * @param ids 会员id集合
+     * @return
+     */
+    @ApiOperation("批量删除会员")
+    @DeleteMapping
+    @PreAuthorize("hasAuthority('admin:user:delete')")
+    public Result<String> removeMembers(@RequestBody List<Integer> ids) {
+        // 创建会员对象集合
+        List<Member> memberList = new ArrayList<>();
+        // 循环遍历会员id集合
+        ids.forEach(id -> {
+            Member member = new Member();
+            member.setId(id);
+            member.setStatus(-1);
+            memberList.add(member);
+        });
+        boolean removed = memberService.updateBatchById(memberList);
+        return Result.handle(removed);
+    }
 //
 //    //////////////////////////// feign 接口 ////////////////////////
 //    @GetMapping("getNickNameByOpenId")
