@@ -25,6 +25,11 @@ spring:
 ###############################macos远程配置中心配置文件内容###################################
 #server:
 #  port: 9999
+#wx:
+#  appid: wxcfa9d409c6937d8f
+#  secret: bbb7308cfb3165480d47a6b21a5c0d3e
+#  url: https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code
+#  pwd: $2a$10$Q9Z7w/s59CV07YNDpjQKbegSoiqAKji8VHJvDgShU2pDUY2kjdywa
 ################################macos远程配置中心，项目公共配置文件内容###################################
 #spring:
 #  datasource:   # 配置连接数据库
