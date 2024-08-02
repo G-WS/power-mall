@@ -72,20 +72,20 @@ public class SysMemberController {
         return Result.success(member);
     }
 
-//    /**
-//     * 修改会员状态
-//     * @param member 会员对象（id,status）
-//     * @return
-//     */
-//    @ApiOperation("修改会员状态")
-//    @PutMapping
-//    @PreAuthorize("hasAuthority('admin:user:update')")
-//    public Result<String> modifyMemberStatus(@RequestBody Member member) {
-//        member.setUpdateTime(new Date());
-//        boolean updated = memberService.updateById(member);
-//        return Result.handle(updated);
-//    }
-//
+    /**
+     * 修改会员状态
+     * @param member 会员对象（id,status）
+     * @return
+     */
+    @ApiOperation("修改会员状态")
+    @PutMapping
+    @PreAuthorize("hasAuthority('admin:user:update')")
+    public Result<String> modifyMemberStatus(@RequestBody Member member) {
+        member.setUpdateTime(new Date());
+        boolean updated = memberService.updateById(member);
+        return Result.handle(updated);
+    }
+
 //    /**
 //     * 批量删除会员
 //     * @param ids 会员id集合
