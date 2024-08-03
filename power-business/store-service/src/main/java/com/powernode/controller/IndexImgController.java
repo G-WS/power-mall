@@ -113,5 +113,6 @@ public class IndexImgController {
     public Result<List<IndexImg>> loadWxIndexImgList() {
         List<IndexImg> indexImgList = indexImgService.queryWxIndexImgList();
         return Result.success(indexImgList);
+
     }
 }

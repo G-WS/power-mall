@@ -98,5 +98,6 @@ public class IndexImgServiceImpl extends ServiceImpl<IndexImgMapper, IndexImg> i
                 .eq(IndexImg::getStatus,1)
                 .orderByDesc(IndexImg::getSeq)
         );
+
     }
 }

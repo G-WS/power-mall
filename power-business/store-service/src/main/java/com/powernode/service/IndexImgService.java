@@ -38,6 +38,7 @@ public interface IndexImgService extends IService<IndexImg>{
 
     /**
      * 查询小程序轮播图列表
+     *
      * @return
      */
     List<IndexImg> queryWxIndexImgList();
