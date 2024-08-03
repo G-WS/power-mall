@@ -122,33 +122,33 @@ public class ProdTagController {
         List<ProdTag> list = prodTagService.queryProdTagList();
         return Result.success(list);
     }
-//
-//    /////////////////////// 微信小程序数据接口 /////////////////////////
-//
-//    /**
-//     * 查询小程序商品分组标签
-//     * @return
-//     */
-////    prod/prodTag/prodTagList
-//    @ApiOperation("查询小程序商品分组标签")
-//    @GetMapping("prodTagList")
-//    public Result<List<ProdTag>> loadWxProdTagList() {
-//        List<ProdTag> prodTags = prodTagService.queryWxProdTagList();
-//        return Result.success(prodTags);
-//    }
-//
-//    /////////////////////// feign 接口 //////////////////////////
-//    @GetMapping("getProdTagReferencePageByTagId")
-//    public Result<Page<ProdTagReference>> getProdTagReferencePageByTagId(@RequestParam Long current,
-//                                                                         @RequestParam Long size,
-//                                                                         @RequestParam Long tagId) {
-//        // 创建分页对象
-//        Page<ProdTagReference> prodTagReferencePage = new Page<>(current,size);
-//        // 根据分页标识分页查询商品与分组标签关系记录
-//        prodTagReferencePage = prodTagReferenceService.page(prodTagReferencePage,new LambdaQueryWrapper<ProdTagReference>()
-//                .eq(ProdTagReference::getTagId,tagId)
-//                .orderByDesc(ProdTagReference::getCreateTime)
-//        );
-//        return Result.success(prodTagReferencePage);
-//    }
+
+    /////////////////////// 微信小程序数据接口 /////////////////////////
+
+    /**
+     * 查询小程序商品分组标签
+     * @return
+     */
+//    prod/prodTag/prodTagList
+    @ApiOperation("查询小程序商品分组标签")
+    @GetMapping("prodTagList")
+    public Result<List<ProdTag>> loadWxProdTagList() {
+        List<ProdTag> prodTags = prodTagService.queryWxProdTagList();
+        return Result.success(prodTags);
+    }
+
+    /////////////////////// feign 接口 //////////////////////////
+    @GetMapping("getProdTagReferencePageByTagId")
+    public Result<Page<ProdTagReference>> getProdTagReferencePageByTagId(@RequestParam Long current,
+                                                                         @RequestParam Long size,
+                                                                         @RequestParam Long tagId) {
+        // 创建分页对象
+        Page<ProdTagReference> prodTagReferencePage = new Page<>(current,size);
+        // 根据分页标识分页查询商品与分组标签关系记录
+        prodTagReferencePage = prodTagReferenceService.page(prodTagReferencePage,new LambdaQueryWrapper<ProdTagReference>()
+                .eq(ProdTagReference::getTagId,tagId)
+                .orderByDesc(ProdTagReference::getCreateTime)
+        );
+        return Result.success(prodTagReferencePage);
+    }
 }

@@ -28,9 +28,9 @@ public interface ProdTagService extends IService<ProdTag>{
      */
     List<ProdTag> queryProdTagList();
 
-//    /**
-//     * 查询小程序商品分组标签
-//     * @return
-//     */
-//    List<ProdTag> queryWxProdTagList();
+    /**
+     * 查询小程序商品分组标签
+     * @return
+     */
+    List<ProdTag> queryWxProdTagList();
 }

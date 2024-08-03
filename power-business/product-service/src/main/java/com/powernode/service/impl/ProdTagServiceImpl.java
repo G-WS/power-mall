@@ -63,13 +63,13 @@ public class ProdTagServiceImpl extends ServiceImpl<ProdTagMapper, ProdTag> impl
                 .orderByDesc(ProdTag::getSeq)
         );
     }
-//
-//    @Override
-//    @Cacheable(key = ProductConstants.WX_PROD_TAG)
-//    public List<ProdTag> queryWxProdTagList() {
-//        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>()
-//                .eq(ProdTag::getStatus,1)
-//                .orderByDesc(ProdTag::getSeq)
-//        );
-//    }
+
+    @Override
+    @Cacheable(key = ProductConstants.WX_PROD_TAG)
+    public List<ProdTag> queryWxProdTagList() {
+        return prodTagMapper.selectList(new LambdaQueryWrapper<ProdTag>()
+                .eq(ProdTag::getStatus,1)
+                .orderByDesc(ProdTag::getSeq)
+        );
+    }
 }
