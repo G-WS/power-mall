@@ -12,6 +12,9 @@ import com.powernode.mapper.ProdMapper;
 import com.powernode.mapper.ProdTagReferenceMapper;
 import com.powernode.mapper.SkuMapper;
 
+import com.powernode.model.ChangeStock;
+import com.powernode.model.ProdChange;
+import com.powernode.model.SkuChange;
 import com.powernode.service.ProdService;
 import com.powernode.service.ProdTagReferenceService;
 import com.powernode.service.SkuService;
@@ -184,47 +187,47 @@ public class ProdServiceImpl extends ServiceImpl<ProdMapper, Prod> implements Pr
         return prodMapper.deleteById(prodId)>0;
     }
 
-//    @Override
-//    public Prod queryWxProdInfoByProdId(Long prodId) {
-//        // 根据标识查询商品信息
-//        Prod prod = prodMapper.selectById(prodId);
-//        // 根据商品标识查询商品sku对象
-//        List<Sku> skus = skuMapper.selectList(new LambdaQueryWrapper<Sku>()
-//                .eq(Sku::getProdId, prodId)
-//        );
-//        prod.setSkuList(skus);
-//        return prod;
-//    }
-//
-//    @Override
-//    @Transactional(rollbackFor = Exception.class)
-//    public Boolean changeProdAndSkuChangeStock(ChangeStock changeStock) {
-//        Boolean flag = false;
-//        // 获取商品sku购买数量对象
-//        List<SkuChange> skuChangeList = changeStock.getSkuChangeList();
-//        for (SkuChange skuChange : skuChangeList) {
-//            Long skuId = skuChange.getSkuId();
-//            Sku sku = skuMapper.selectById(skuId);
-//            Integer count = skuMapper.updateSkuStock(skuId,skuChange.getCount(),sku.getVersion());
-//            if (count == 1) {
-//                flag = true;
-//            } else {
-//                throw new RuntimeException("更新失败");
-//            }
-//        }
-//
-//        // 获取商品prod购买数量对象
-//        List<ProdChange> prodChangeList = changeStock.getProdChangeList();
-//        for (ProdChange prodChange : prodChangeList) {
-//            Long prodId = prodChange.getProdId();
-//            Prod prod = prodMapper.selectById(prodId);
-//            Integer count = prodMapper.updateProdStock(prodId,prodChange.getCount(),prod.getVersion());
-//            if (count == 1) {
-//                flag = true;
-//            } else {
-//                throw new RuntimeException("更新失败");
-//            }
-//        }
-//        return flag;
-//    }
+    @Override
+    public Prod queryWxProdInfoByProdId(Long prodId) {
+        // 根据标识查询商品信息
+        Prod prod = prodMapper.selectById(prodId);
+        // 根据商品标识查询商品sku对象
+        List<Sku> skus = skuMapper.selectList(new LambdaQueryWrapper<Sku>()
+                .eq(Sku::getProdId, prodId)
+        );
+        prod.setSkuList(skus);
+        return prod;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean changeProdAndSkuChangeStock(ChangeStock changeStock) {
+        Boolean flag = false;
+        // 获取商品sku购买数量对象
+        List<SkuChange> skuChangeList = changeStock.getSkuChangeList();
+        for (SkuChange skuChange : skuChangeList) {
+            Long skuId = skuChange.getSkuId();
+            Sku sku = skuMapper.selectById(skuId);
+            Integer count = skuMapper.updateSkuStock(skuId,skuChange.getCount(),sku.getVersion());
+            if (count == 1) {
+                flag = true;
+            } else {
+                throw new RuntimeException("更新失败");
+            }
+        }
+
+        // 获取商品prod购买数量对象
+        List<ProdChange> prodChangeList = changeStock.getProdChangeList();
+        for (ProdChange prodChange : prodChangeList) {
+            Long prodId = prodChange.getProdId();
+            Prod prod = prodMapper.selectById(prodId);
+            Integer count = prodMapper.updateProdStock(prodId,prodChange.getCount(),prod.getVersion());
+            if (count == 1) {
+                flag = true;
+            } else {
+                throw new RuntimeException("更新失败");
+            }
+        }
+        return flag;
+    }
 }

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.powernode.domain.Prod;
 import com.powernode.domain.Sku;
+import com.powernode.model.ChangeStock;
 import com.powernode.model.Result;
 import com.powernode.service.ProdService;
 import com.powernode.service.SkuService;
@@ -108,48 +109,48 @@ public class ProdController {
         Boolean removed = prodService.removeProdById(prodId);
         return Result.handle(removed);
     }
-//
-//    //////////////////////////////////// feign 接口 ///////////////////////////
-//    @GetMapping("getProdListByIds")
-//    public Result<List<Prod>> getProdListByIds(@RequestParam List<Long> prodIdList) {
-//        List<Prod> prods = prodService.listByIds(prodIdList);
-//        return Result.success(prods);
-//    }
-//
-//    @GetMapping("getProdListByCategoryIds")
-//    public Result<List<Prod>> getProdListByCategoryIds(@RequestParam List<Long> categoryIds) {
-//        List<Prod> list = prodService.list(new LambdaQueryWrapper<Prod>()
-//                .in(Prod::getCategoryId, categoryIds)
-//        );
-//        return Result.success(list);
-//    }
-//
-//    @GetMapping("getSkuListBySkuIds")
-//    public Result<List<Sku>> getSkuListBySkuIds(@RequestParam List<Long> skuIds) {
-//        List<Sku> skus = skuService.listByIds(skuIds);
-//        return Result.success(skus);
-//    }
-//
-//    @PostMapping("changeProdAndSkuStock")
-//    public Result<Boolean> changeProdAndSkuStock(@RequestBody ChangeStock changeStock) {
-//        Boolean changed = prodService.changeProdAndSkuChangeStock(changeStock);
-//        return Result.success(changed);
-//    }
-//
-//
-//    ////////////////////////////// 微信小程序数据接口 /////////////////////////
-//
-//    /**
-//     * 小程序根据商品标识查询商品详情
-//     * @param prodId    商品标识
-//     * @return
-//     */
-////    prod/prod/prod/prodInfo?prodId=99
-//    @ApiOperation("小程序根据商品标识查询商品详情")
-//    @GetMapping("prod/prodInfo")
-//    public Result<Prod> loadWxProdInfo(@RequestParam Long prodId) {
-//        // 根据商品标识查询商品详情
-//        Prod prod = prodService.queryWxProdInfoByProdId(prodId);
-//        return Result.success(prod);
-//    }
+
+    //////////////////////////////////// feign 接口 ///////////////////////////
+    @GetMapping("getProdListByIds")
+    public Result<List<Prod>> getProdListByIds(@RequestParam List<Long> prodIdList) {
+        List<Prod> prods = prodService.listByIds(prodIdList);
+        return Result.success(prods);
+    }
+
+    @GetMapping("getProdListByCategoryIds")
+    public Result<List<Prod>> getProdListByCategoryIds(@RequestParam List<Long> categoryIds) {
+        List<Prod> list = prodService.list(new LambdaQueryWrapper<Prod>()
+                .in(Prod::getCategoryId, categoryIds)
+        );
+        return Result.success(list);
+    }
+
+    @GetMapping("getSkuListBySkuIds")
+    public Result<List<Sku>> getSkuListBySkuIds(@RequestParam List<Long> skuIds) {
+        List<Sku> skus = skuService.listByIds(skuIds);
+        return Result.success(skus);
+    }
+
+    @PostMapping("changeProdAndSkuStock")
+    public Result<Boolean> changeProdAndSkuStock(@RequestBody ChangeStock changeStock) {
+        Boolean changed = prodService.changeProdAndSkuChangeStock(changeStock);
+        return Result.success(changed);
+    }
+
+
+    ////////////////////////////// 微信小程序数据接口 /////////////////////////
+
+    /**
+     * 小程序根据商品标识查询商品详情
+     * @param prodId    商品标识
+     * @return
+     */
+//    prod/prod/prod/prodInfo?prodId=99
+    @ApiOperation("小程序根据商品标识查询商品详情")
+    @GetMapping("prod/prodInfo")
+    public Result<Prod> loadWxProdInfo(@RequestParam Long prodId) {
+        // 根据商品标识查询商品详情
+        Prod prod = prodService.queryWxProdInfoByProdId(prodId);
+        return Result.success(prod);
+    }
 }

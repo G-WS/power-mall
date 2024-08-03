@@ -2,6 +2,7 @@ package com.powernode.service;
 
 import com.powernode.domain.Prod;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.powernode.model.ChangeStock;
 
 public interface ProdService extends IService<Prod>{
 
@@ -34,17 +35,17 @@ public interface ProdService extends IService<Prod>{
      */
     Boolean removeProdById(Long prodId);
 
-//    /**
-//     * 小程序根据商品标识查询商品详情
-//     * @param prodId
-//     * @return
-//     */
-//    Prod queryWxProdInfoByProdId(Long prodId);
-//
-//    /**
-//     * 修改商品prod和sku库存数量
-//     * @param changeStock
-//     * @return
-//     */
-//    Boolean changeProdAndSkuChangeStock(ChangeStock changeStock);
+    /**
+     * 小程序根据商品标识查询商品详情
+     * @param prodId
+     * @return
+     */
+    Prod queryWxProdInfoByProdId(Long prodId);
+
+    /**
+     * 修改商品prod和sku库存数量
+     * @param changeStock
+     * @return
+     */
+    Boolean changeProdAndSkuChangeStock(ChangeStock changeStock);
 }
