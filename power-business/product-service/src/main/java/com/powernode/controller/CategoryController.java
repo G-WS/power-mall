@@ -100,28 +100,28 @@ public class CategoryController {
         return Result.handle(removed);
     }
 
-//    ////////////////// 微信小程序数据接口 //////////////////////////
-//
-//    /**
-//     * 查询小程序中商品的一级类目集合
-//     * @param parentId  父节点id
-//     * @return
-//     */
-////    prod/category/category/list
-//    @ApiOperation("查询小程序中商品的一级类目集合")
-//    @GetMapping("category/list")
-//    public Result<List<Category>> loadWxCategoryList(@RequestParam Long parentId) {
-//        List<Category> list = categoryService.queryWxCategoryListByPid(parentId);
-//        return Result.success(list);
-//    }
-//
-//    ///////////////////////// feign 接口 ///////////////////////////////
-//    @GetMapping("getCategoryListByParentId")
-//    public Result<List<Category>> getCategoryListByParentId(@RequestParam Long parentId) {
-//        // 查询商品类目的子类目集合
-//        List<Category> list = categoryService.list(new LambdaQueryWrapper<Category>()
-//                .eq(Category::getParentId, parentId)
-//        );
-//        return Result.success(list);
-//    }
+    ////////////////// 微信小程序数据接口 //////////////////////////
+
+    /**
+     * 查询小程序中商品的一级类目集合
+     * @param parentId  父节点id
+     * @return
+     */
+//    prod/category/category/list
+    @ApiOperation("查询小程序中商品的一级类目集合")
+    @GetMapping("category/list")
+    public Result<List<Category>> loadWxCategoryList(@RequestParam Long parentId) {
+        List<Category> list = categoryService.queryWxCategoryListByPid(parentId);
+        return Result.success(list);
+    }
+
+    ///////////////////////// feign 接口 ///////////////////////////////
+    @GetMapping("getCategoryListByParentId")
+    public Result<List<Category>> getCategoryListByParentId(@RequestParam Long parentId) {
+        // 查询商品类目的子类目集合
+        List<Category> list = categoryService.list(new LambdaQueryWrapper<Category>()
+                .eq(Category::getParentId, parentId)
+        );
+        return Result.success(list);
+    }
 }

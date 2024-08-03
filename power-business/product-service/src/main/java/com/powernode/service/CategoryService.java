@@ -41,10 +41,10 @@ public interface CategoryService extends IService<Category>{
      */
     Boolean removeCategoryById(Long categoryId);
 
-//    /**
-//     * 查询小程序中商品的一级类目集合
-//     * @param pid
-//     * @return
-//     */
-//    List<Category> queryWxCategoryListByPid(Long pid);
+    /**
+     * 查询小程序中商品的一级类目集合
+     * @param pid
+     * @return
+     */
+    List<Category> queryWxCategoryListByPid(Long pid);
 }

@@ -123,13 +123,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         return categoryMapper.deleteById(categoryId)>0;
     }
 
-//    @Override
-//    @Cacheable(key = ProductConstants.WX_FIRST_CATEGORY)
-//    public List<Category> queryWxCategoryListByPid(Long pid) {
-//        return categoryMapper.selectList(new LambdaQueryWrapper<Category>()
-//                .eq(Category::getStatus,1)
-//                .eq(Category::getParentId,pid)
-//                .orderByDesc(Category::getSeq)
-//        );
-//    }
+    @Override
+    @Cacheable(key = ProductConstants.WX_FIRST_CATEGORY)
+    public List<Category> queryWxCategoryListByPid(Long pid) {
+        return categoryMapper.selectList(new LambdaQueryWrapper<Category>()
+                .eq(Category::getStatus,1)
+                .eq(Category::getParentId,pid)
+                .orderByDesc(Category::getSeq)
+        );
+    }
 }
